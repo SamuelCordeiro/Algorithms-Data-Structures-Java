@@ -40,7 +40,14 @@ public class VetorGenerico<T> {
 		this.tamanho++;
 	}
 	
-	public void remove(int posicao) {
+	public void removeElemento(T elemento) {
+		int pos = this.buscaElemento(elemento);
+		if(pos > -1) {
+			this.removePosicao(pos);
+		}
+	}
+	
+	public void removePosicao(int posicao) {
 		if(!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
@@ -48,7 +55,6 @@ public class VetorGenerico<T> {
 			this.elementos[i] = this.elementos[i+1];
 		}
 		this.tamanho--;
-		
 	}
 	
 	@Override
@@ -81,4 +87,23 @@ public class VetorGenerico<T> {
 		}
 		return -1;
 	}
+	
+	public boolean comtem(T elemento) {
+		
+		return buscaElemento(elemento) > -1;
+	}
+	
+	public int ultimoIndice(T elemento) {
+		for(int i = this.tamanho - 1; i >= 0; i--) {
+			if(this.elementos[i].equals(elemento)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public void limpar() {
+		this.elementos = (T[]) new Object[this.elementos.length];
+	}
+	
 }
