@@ -49,10 +49,6 @@ public class EstruturaEstatica<T> {
 		return true;
 	}
 	
-	public void removeUtilmaPosicao() {
-		this.elementos[this.tamanho-1] = this.elementos[tamanho];
-	}
-	
 	public void removePorPosicao(int posicao) {
 		if(!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição invalida");
@@ -85,4 +81,7 @@ public class EstruturaEstatica<T> {
 	public boolean estaVazia() {
 		return this.tamanho == 0;
 	}
+	
+	
+	
 }
