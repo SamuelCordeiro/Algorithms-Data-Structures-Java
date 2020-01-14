@@ -1,6 +1,6 @@
 package estruturadados.fila;
 
-public class FilaComPrioridade<T> extends Fila<T> {
+public class FilaComPrioridadeEstatica<T> extends FilaEstatica<T> {
 	
 	/*public FilaComPrioridade() {
 		super();

@@ -2,13 +2,13 @@ package estruturadados.fila;
 
 import estruturadados.estruturaestatica.EstruturaEstatica;
 
-public class Fila<T> extends EstruturaEstatica<T> {
+public class FilaEstatica<T> extends EstruturaEstatica<T> {
 
-	public Fila() {
+	public FilaEstatica() {
 		super();
 	}
 	
-	public Fila(int capacidade) {
+	public FilaEstatica(int capacidade) {
 		super(capacidade);
 	}
 	

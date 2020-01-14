@@ -2,13 +2,13 @@ package estruturadados.pilha;
 
 import estruturadados.estruturaestatica.EstruturaEstatica;
 
-public class Pilha<T> extends EstruturaEstatica<T> {
+public class PilhaEstatica<T> extends EstruturaEstatica<T> {
 
-	public Pilha() {
+	public PilhaEstatica() {
 		super();
 	}
 	
-	public Pilha(int capacidade) {
+	public PilhaEstatica(int capacidade) {
 		super(capacidade);
 	}
 	
