@@ -5,6 +5,14 @@ public class No {
 	private Object elemento;
 	private No proximo;
 	
+	public No() {
+		
+	}
+	public No(Object elemento, No proximo) {
+		this.elemento = elemento;
+		this.proximo = proximo;
+	}
+	
 	public Object getElemento() {
 		return elemento;
 	}

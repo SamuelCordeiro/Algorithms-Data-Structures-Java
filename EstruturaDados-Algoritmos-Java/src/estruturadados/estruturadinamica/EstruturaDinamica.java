@@ -1,26 +1,22 @@
 package estruturadados.estruturadinamica;
 
 public class EstruturaDinamica<T> {
-	
+
 	protected No inicio;
 	protected No ultimo;
 	protected int tamanho;
-	
-	
+
+
 	public EstruturaDinamica() {
 		this.inicio = null;
 		this.ultimo = null;
 		this.tamanho = 0;
 	}
-	
+
 	public void adiciona(T elemento) {
-		No novoNo = new No();
-		novoNo.setElemento(elemento);
-		novoNo.setProximo(null);
-		
+		No novoNo = new No(elemento, null);
 		if(estaVazia()) {
-			this.inicio = novoNo;
-			this.ultimo = novoNo;
+			this.inicio = this.ultimo = novoNo;
 		}else {
 			this.ultimo.setProximo(novoNo);
 			this.ultimo = novoNo;
@@ -28,6 +24,19 @@ public class EstruturaDinamica<T> {
 		this.tamanho++;
 	}
 	
+	public void adiciona(T elemento, int posicao) {
+		if(posicao < 0 || posicao > tamanho) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		No novoNo = new No(elemento, null);
+		No aux = this.inicio;
+		for(int i = 0; i < posicao-1; i++) {
+			aux = aux.getProximo();
+		}
+		novoNo.setProximo(aux.getProximo());
+		aux.setProximo(novoNo);
+	}
+
 	public String toString() {
 		No aux = this.inicio;
 		StringBuilder s = new StringBuilder();
@@ -41,11 +50,11 @@ public class EstruturaDinamica<T> {
 		s.append("]");
 		return s.toString();
 	}
-	
+
 	public boolean estaVazia() {
 		return this.inicio == null;
 	}
-	
+
 	public int getTamanho() {
 		return this.tamanho;
 	}
