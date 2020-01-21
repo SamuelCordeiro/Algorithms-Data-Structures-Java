@@ -13,7 +13,7 @@ public class EstruturaDinamica<T> {
 		this.tamanho = 0;
 	}
 
-	public void adiciona(T elemento) {
+	protected void adiciona(T elemento) {
 		No novoNo = new No(elemento, null);
 		if(estaVazia()) {
 			this.inicio = this.ultimo = novoNo;
@@ -24,7 +24,7 @@ public class EstruturaDinamica<T> {
 		this.tamanho++;
 	}
 	
-	public void adiciona(T elemento, int posicao) {
+	protected void adiciona(T elemento, int posicao) {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
@@ -37,7 +37,7 @@ public class EstruturaDinamica<T> {
 		aux.setProximo(novoNo);
 	}
 	
-	public void remove(int posicao) {
+	protected void remove(int posicao) {
 		if(!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
@@ -78,8 +78,4 @@ public class EstruturaDinamica<T> {
 	public Object getUltimo() {
 		return ultimo.getElemento();
 	}
-	
-	
-
-
 }

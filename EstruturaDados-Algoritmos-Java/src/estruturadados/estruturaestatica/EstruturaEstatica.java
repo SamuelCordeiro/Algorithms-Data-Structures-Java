@@ -49,7 +49,7 @@ public class EstruturaEstatica<T> {
 		return true;
 	}
 	
-	public void removePorPosicao(int posicao) {
+	protected void removePorPosicao(int posicao) {
 		if(!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição invalida");
 		}

@@ -2,14 +2,6 @@ package estruturadados.fila;
 
 public class FilaComPrioridadeEstatica<T> extends FilaEstatica<T> {
 	
-	/*public FilaComPrioridade() {
-		super();
-	}
-	
-	public FilaComPrioridade(int capacidade) {
-		super(capacidade);
-	}*/
-	
 	public void enfileirar(T elemento) {
 		
 		Comparable<T> chave = ((Comparable<T>) elemento);
