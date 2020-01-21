@@ -19,6 +19,10 @@ public class No {
 	public void setElemento(Object elemento) {
 		this.elemento = elemento;
 	}
+	
+	public No getProximo(No x) {
+		return x.getProximo();
+	}
 	public No getProximo() {
 		return proximo;
 	}

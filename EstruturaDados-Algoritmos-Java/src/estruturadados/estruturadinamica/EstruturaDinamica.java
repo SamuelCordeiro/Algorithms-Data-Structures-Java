@@ -36,6 +36,18 @@ public class EstruturaDinamica<T> {
 		novoNo.setProximo(aux.getProximo());
 		aux.setProximo(novoNo);
 	}
+	
+	public void remove(int posicao) {
+		if(!(posicao >= 0 && posicao < tamanho)) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		No aux = this.inicio;
+		for(int i = 0; i< posicao-1; i++) {
+			aux = aux.getProximo();
+		}
+		aux.setProximo(aux.getProximo(aux.getProximo()));
+		
+	}
 
 	public String toString() {
 		No aux = this.inicio;
@@ -58,6 +70,16 @@ public class EstruturaDinamica<T> {
 	public int getTamanho() {
 		return this.tamanho;
 	}
+
+	public Object getInicio() {
+		return inicio.getElemento();
+	}
+
+	public Object getUltimo() {
+		return ultimo.getElemento();
+	}
+	
+	
 
 
 }
