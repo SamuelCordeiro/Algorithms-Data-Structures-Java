@@ -6,7 +6,6 @@ public class EstruturaDinamica<T> {
 	protected No ultimo;
 	protected int tamanho;
 
-
 	public EstruturaDinamica() {
 		this.inicio = null;
 		this.ultimo = null;
@@ -29,27 +28,34 @@ public class EstruturaDinamica<T> {
 			throw new IllegalArgumentException("Posição invalida");
 		}
 		No novoNo = new No(elemento, null);
-		No aux = this.inicio;
-		for(int i = 0; i < posicao-1; i++) {
-			aux = aux.getProximo();
+		if(posicao == 0) {
+			novoNo.setProximo(inicio);
+			inicio = novoNo;
+		}else {
+			No aux = buscarNo(posicao - 1);
+			novoNo.setProximo(aux.getProximo());
+			aux.setProximo(novoNo);
 		}
-		novoNo.setProximo(aux.getProximo());
-		aux.setProximo(novoNo);
+		this.tamanho++;		
 	}
 	
 	protected void remove(int posicao) {
-		if(!(posicao >= 0 && posicao < tamanho)) {
+		if(posicao < 0 || posicao > tamanho || estaVazia()) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
-		No aux = this.inicio;
-		for(int i = 0; i< posicao-1; i++) {
-			aux = aux.getProximo();
+		if(posicao == 0) {
+			this.inicio = inicio.getProximo();
+		}else {
+			No aux = buscarNo(posicao - 1);
+			aux.setProximo(aux.getProximo(aux.getProximo()));
 		}
-		aux.setProximo(aux.getProximo(aux.getProximo()));
-		
+		this.tamanho--;
 	}
 
 	public String toString() {
+		if(estaVazia()) {
+			return "[]";
+		}
 		No aux = this.inicio;
 		StringBuilder s = new StringBuilder();
 		s.append("[");
@@ -62,7 +68,55 @@ public class EstruturaDinamica<T> {
 		s.append("]");
 		return s.toString();
 	}
-
+	
+	protected No buscarNo(int posicao) {
+		if(posicao < 0 || posicao > tamanho) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		if(posicao == 0) {
+			return inicio;
+		}
+		if(posicao == tamanho) {
+			return ultimo;
+		}
+		No aux = this.inicio;
+		for(int i = 0; i < posicao; i++) {
+			aux = aux.getProximo();
+		}
+		return aux;
+	}
+	
+	public Object buscarElemento(int posicao) {
+		if(posicao < 0 || posicao > tamanho) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		if(posicao == 0) {
+			return inicio.getElemento();
+		}
+		if(posicao == tamanho) {
+			return ultimo.getElemento();
+		}
+		No aux = this.inicio;
+		for(int i = 0; i < posicao; i++) {
+			aux = aux.getProximo();
+		}
+		return aux.getElemento();
+	}
+	
+	public int buscarElemento(T elemento) {
+		if(estaVazia()) {
+			return -1;
+		}
+		No aux = this.inicio;
+		for (int i = 0; i < this.tamanho; i++) {
+			if(aux.getElemento().equals(elemento)) {
+				return i;
+			}
+			aux = aux.getProximo();
+		}
+		return -1;		
+	}
+	
 	public boolean estaVazia() {
 		return this.inicio == null;
 	}

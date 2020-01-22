@@ -1,6 +1,7 @@
 package estruturadados.lista;
 
 import estruturadados.estruturadinamica.EstruturaDinamica;
+import estruturadados.estruturadinamica.No;
 
 public class ListaDinamica<T> extends EstruturaDinamica<T> {
 
@@ -18,5 +19,18 @@ public class ListaDinamica<T> extends EstruturaDinamica<T> {
 	
 	public void remove(int posicao) {
 		super.remove(posicao);
+	}
+	
+	public Object buscaElemento(int posicao) {
+		return super.buscarElemento(posicao);
+	}
+	
+	public int buscaElemento(T elemento) {
+		return super.buscarElemento(elemento);
+	}
+	
+	public void limpar() {
+		this.inicio = this.ultimo = null;
+		this.tamanho = 0;
 	}
 }
