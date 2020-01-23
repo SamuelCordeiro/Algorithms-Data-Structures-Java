@@ -2,7 +2,7 @@ package estruturadados.fila;
 
 import estruturadados.estruturadinamica.NoEncadeado;
 
-public class FilaComPrioridadeDinamica<T> extends FilaDinamica<T> {
+public class FilaComPrioridadeDinamica<T> extends FilaEncadeada<T> {
 
 	public void enfileirar(T elemento) {
 		Comparable<T> chave = ((Comparable<T>) elemento);

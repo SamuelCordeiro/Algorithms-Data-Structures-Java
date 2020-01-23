@@ -1,9 +1,9 @@
 package estruturadados.lista;
 
-import estruturadados.estruturadinamica.EstruturaDinamica;
+import estruturadados.estruturadinamica.EstruturaEncadeada;
 import estruturadados.estruturadinamica.NoEncadeado;
 
-public class ListaDinamica<T> extends EstruturaDinamica<T> {
+public class ListaDinamica<T> extends EstruturaEncadeada<T> {
 
 	public ListaDinamica() {
 		super();

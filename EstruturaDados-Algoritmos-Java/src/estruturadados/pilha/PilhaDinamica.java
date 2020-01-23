@@ -1,8 +1,8 @@
 package estruturadados.pilha;
 
-import estruturadados.estruturadinamica.EstruturaDinamica;
+import estruturadados.estruturadinamica.EstruturaEncadeada;
 
-public class PilhaDinamica<T> extends EstruturaDinamica<T> {
+public class PilhaDinamica<T> extends EstruturaEncadeada<T> {
 
 	public PilhaDinamica() {
 		super();
