@@ -1,13 +1,13 @@
 package estruturadados.fila;
 
-import estruturadados.estruturadinamica.No;
+import estruturadados.estruturadinamica.NoEncadeado;
 
 public class FilaComPrioridadeDinamica<T> extends FilaDinamica<T> {
 
 	public void enfileirar(T elemento) {
 		Comparable<T> chave = ((Comparable<T>) elemento);
 		int i;
-		No aux = this.inicio;
+		NoEncadeado aux = this.inicio;
 		for(i = 0; i < this.tamanho; i++) {
 			if(chave.compareTo((T) aux.getElemento()) < 0) {
 				break;

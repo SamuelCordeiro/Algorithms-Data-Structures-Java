@@ -1,7 +1,7 @@
 package estruturadados.lista;
 
 import estruturadados.estruturadinamica.EstruturaDinamica;
-import estruturadados.estruturadinamica.No;
+import estruturadados.estruturadinamica.NoEncadeado;
 
 public class ListaDinamica<T> extends EstruturaDinamica<T> {
 

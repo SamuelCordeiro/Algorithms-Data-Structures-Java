@@ -2,8 +2,8 @@ package estruturadados.estruturadinamica;
 
 public class EstruturaDinamica<T> {
 
-	protected No inicio;
-	protected No ultimo;
+	protected NoEncadeado inicio;
+	protected NoEncadeado ultimo;
 	protected int tamanho;
 
 	public EstruturaDinamica() {
@@ -13,7 +13,7 @@ public class EstruturaDinamica<T> {
 	}
 
 	protected void adiciona(T elemento) {
-		No novoNo = new No(elemento, null);
+		NoEncadeado novoNo = new NoEncadeado(elemento, null);
 		if(estaVazia()) {
 			this.inicio = this.ultimo = novoNo;
 		}else {
@@ -27,12 +27,12 @@ public class EstruturaDinamica<T> {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
-		No novoNo = new No(elemento, null);
+		NoEncadeado novoNo = new NoEncadeado(elemento, null);
 		if(posicao == 0) {
 			novoNo.setProximo(inicio);
 			inicio = novoNo;
 		}else {
-			No aux = buscarNo(posicao - 1);
+			NoEncadeado aux = buscarNo(posicao - 1);
 			novoNo.setProximo(aux.getProximo());
 			aux.setProximo(novoNo);
 		}
@@ -46,7 +46,7 @@ public class EstruturaDinamica<T> {
 		if(posicao == 0) {
 			this.inicio = inicio.getProximo();
 		}else {
-			No aux = buscarNo(posicao - 1);
+			NoEncadeado aux = buscarNo(posicao - 1);
 			aux.setProximo(aux.getProximo(aux.getProximo()));
 		}
 		this.tamanho--;
@@ -56,7 +56,7 @@ public class EstruturaDinamica<T> {
 		if(estaVazia()) {
 			return "[]";
 		}
-		No aux = this.inicio;
+		NoEncadeado aux = this.inicio;
 		StringBuilder s = new StringBuilder();
 		s.append("[");
 		while(aux.getProximo() != null){
@@ -69,7 +69,7 @@ public class EstruturaDinamica<T> {
 		return s.toString();
 	}
 	
-	protected No buscarNo(int posicao) {
+	protected NoEncadeado buscarNo(int posicao) {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
@@ -79,7 +79,7 @@ public class EstruturaDinamica<T> {
 		if(posicao == tamanho) {
 			return ultimo;
 		}
-		No aux = this.inicio;
+		NoEncadeado aux = this.inicio;
 		for(int i = 0; i < posicao; i++) {
 			aux = aux.getProximo();
 		}
@@ -96,7 +96,7 @@ public class EstruturaDinamica<T> {
 		if(posicao == tamanho) {
 			return ultimo.getElemento();
 		}
-		No aux = this.inicio;
+		NoEncadeado aux = this.inicio;
 		for(int i = 0; i < posicao; i++) {
 			aux = aux.getProximo();
 		}
@@ -107,7 +107,7 @@ public class EstruturaDinamica<T> {
 		if(estaVazia()) {
 			return -1;
 		}
-		No aux = this.inicio;
+		NoEncadeado aux = this.inicio;
 		for (int i = 0; i < this.tamanho; i++) {
 			if(aux.getElemento().equals(elemento)) {
 				return i;

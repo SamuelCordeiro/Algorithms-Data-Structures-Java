@@ -1,13 +1,13 @@
 package estruturadados.estruturadinamica;
 
-public class No {
+public class NoEncadeado {
 
 	private Object elemento;
-	private No proximo;
+	private NoEncadeado proximo;
 	
-	public No() {}
+	public NoEncadeado() {}
 	
-	public No(Object elemento, No proximo) {
+	public NoEncadeado(Object elemento, NoEncadeado proximo) {
 		this.elemento = elemento;
 		this.proximo = proximo;
 	}
@@ -20,15 +20,15 @@ public class No {
 		this.elemento = elemento;
 	}
 	
-	public No getProximo(No x) {
+	public NoEncadeado getProximo(NoEncadeado x) {
 		return x.getProximo();
 	}
 	
-	public No getProximo() {
+	public NoEncadeado getProximo() {
 		return proximo;
 	}
 	
-	public void setProximo(No proximo) {
+	public void setProximo(NoEncadeado proximo) {
 		this.proximo = proximo;
 	}
 }
