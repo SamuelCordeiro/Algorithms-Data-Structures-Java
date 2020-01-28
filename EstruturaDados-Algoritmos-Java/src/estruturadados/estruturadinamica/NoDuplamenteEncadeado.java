@@ -6,6 +6,9 @@ public class NoDuplamenteEncadeado {
 	private NoDuplamenteEncadeado anterior;
 	private NoDuplamenteEncadeado proximo;
 	
+	public NoDuplamenteEncadeado(Object elemento) {
+		this.elemento = elemento;
+	}
 	public Object getElemento() {
 		return elemento;
 	}
