@@ -11,7 +11,7 @@ public class EstruturaDuplamenteEncadeada <T>{
 	}
 
 	//protected 
-	public void adiciona(T elemento) {
+	protected void adiciona(T elemento) {
 		NoDuplamenteEncadeado novoNo = new NoDuplamenteEncadeado(elemento);
 		if(estaVazia()) {
 			this.inicio = this.ultimo = novoNo;
@@ -28,7 +28,7 @@ public class EstruturaDuplamenteEncadeada <T>{
 		}
 	}
 
-	public void adiciona(T elemento, int posicao) {
+	protected void adiciona(T elemento, int posicao) {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
 		}	
@@ -58,32 +58,29 @@ public class EstruturaDuplamenteEncadeada <T>{
 			this.tamanho++;
 		}
 	}
-
 	protected void remove(int posicao) {
 		if(posicao < 0 || posicao > tamanho || estaVazia()) {
 			throw new IllegalArgumentException("Posição invalida");
-		}		
-		if(posicao == 0) {
-			if(tamanho == 1) {
-				this.inicio = this.ultimo = null;
-				this.tamanho--;
-			}else {
-				this.inicio = this.inicio.getProximo();
-				this.inicio.setAnterior(this.ultimo);
-				this.ultimo.setProximo(this.inicio);
-				this.tamanho--;
-			}
 		}
-		if(posicao == this.tamanho-1) {
-			if(tamanho == 1) {
-				this.inicio = this.ultimo = null;
-				this.tamanho--;
-			}else {
-				this.ultimo = this.ultimo.getAnterior();
-				this.ultimo.setProximo(this.inicio);
-				this.inicio.setAnterior(this.ultimo);
-				this.tamanho--;
-			}
+		if(posicao == 0 && this.tamanho == 1) {
+			this.inicio = this.ultimo = null;
+			this.tamanho--;
+		}else if(posicao == 0 && this.tamanho != 1){
+			this.inicio = this.inicio.getProximo();
+			this.inicio.setAnterior(this.ultimo);
+			this.ultimo.setProximo(this.inicio);
+			this.tamanho--;
+		}else if(posicao == this.tamanho-1 && tamanho != 1) {
+			this.ultimo = this.ultimo.getAnterior();
+			this.ultimo.setProximo(this.inicio);
+			this.inicio.setAnterior(this.ultimo);
+			this.tamanho--;
+		}else {
+			NoDuplamenteEncadeado aux = buscarNo(posicao-1);
+			aux.setProximo(buscarNo(posicao+1));
+			aux = buscarNo(posicao+1);
+			aux.setAnterior(buscarNo(posicao-1));
+			this.tamanho--;
 		}
 	}
 	
@@ -118,7 +115,7 @@ public class EstruturaDuplamenteEncadeada <T>{
 		return -1;		
 	}
 
-	protected NoDuplamenteEncadeado buscarNo(int posicao) {
+	private NoDuplamenteEncadeado buscarNo(int posicao) {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
 		}
