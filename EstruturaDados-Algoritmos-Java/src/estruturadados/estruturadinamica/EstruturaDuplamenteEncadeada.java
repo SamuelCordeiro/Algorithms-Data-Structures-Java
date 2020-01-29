@@ -28,22 +28,28 @@ public class EstruturaDuplamenteEncadeada <T>{
 		}
 	}
 
-	//protected 
 	public void adiciona(T elemento, int posicao) {
 		if(posicao < 0 || posicao > tamanho) {
 			throw new IllegalArgumentException("Posição invalida");
-		}
+		}	
 		NoDuplamenteEncadeado novoNo = new NoDuplamenteEncadeado(elemento);
-		if(posicao == this.tamanho-1) {
-			adiciona(elemento);
-		}else if(posicao == 0) {
+		if(posicao == 0) {
 			novoNo.setAnterior(this.inicio.getAnterior());
 			novoNo.setProximo(this.inicio);
 			this.inicio.setAnterior(novoNo);
 			this.inicio = novoNo;
-			this.tamanho++;			
+			this.tamanho++;	
+		}else if(posicao == this.tamanho-1) {
+			System.out.println("Q");
+			NoDuplamenteEncadeado aux = buscarNo(posicao);
+			novoNo.setAnterior(aux.getAnterior());
+			novoNo.setProximo(aux);
+			aux.setAnterior(novoNo);
+			aux = buscarNo(posicao-1);
+			aux.setProximo(novoNo);
+			this.tamanho++;
 		}else {
-			NoDuplamenteEncadeado aux = buscarNo(posicao+1);
+			NoDuplamenteEncadeado aux = buscarNo(posicao);
 			aux.setAnterior(novoNo);
 			novoNo.setProximo(aux);
 			aux = buscarNo(posicao-1);
@@ -51,7 +57,6 @@ public class EstruturaDuplamenteEncadeada <T>{
 			novoNo.setAnterior(aux);
 			this.tamanho++;
 		}
-
 	}
 
 	protected void remove(int posicao) {
@@ -80,54 +85,86 @@ public class EstruturaDuplamenteEncadeada <T>{
 				this.tamanho--;
 			}
 		}
-}
-public NoDuplamenteEncadeado buscarNo(int posicao) {
-	if(posicao < 0 || posicao > tamanho) {
-		throw new IllegalArgumentException("Posição invalida");
 	}
-	if(posicao == 0) {
-		return this.inicio;
+	
+	public Object buscarElemento(int posicao) {
+		if(posicao < 0 || posicao > tamanho) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		if(posicao == 0) {
+			return inicio.getElemento();
+		}
+		if(posicao == tamanho -1) {
+			return ultimo.getElemento();
+		}
+		NoDuplamenteEncadeado aux = this.inicio;
+		for(int i = 0; i < posicao; i++) {
+			aux = aux.getProximo();
+		}
+		return aux.getElemento();
 	}
-	if(posicao == tamanho-1) {
-		return this.ultimo;
+	
+	public int buscarElemento(T elemento) {
+		if(estaVazia()) {
+			return -1;
+		}
+		NoDuplamenteEncadeado aux = this.inicio;
+		for (int i = 0; i < this.tamanho; i++) {
+			if(aux.getElemento().equals(elemento)) {
+				return i;
+			}
+			aux = aux.getProximo();
+		}
+		return -1;		
 	}
-	NoDuplamenteEncadeado aux = this.inicio;
-	for(int i = 0; i < posicao; i++) {
-		aux = aux.getProximo();
-	}
-	return aux;
-}
 
-public String toString() {
-	if(estaVazia()) {
-		return "[]";
+	protected NoDuplamenteEncadeado buscarNo(int posicao) {
+		if(posicao < 0 || posicao > tamanho) {
+			throw new IllegalArgumentException("Posição invalida");
+		}
+		if(posicao == 0) {
+			return this.inicio;
+		}
+		if(posicao == tamanho-1) {
+			return this.ultimo;
+		}
+		NoDuplamenteEncadeado aux = this.inicio;
+		for(int i = 0; i < posicao; i++) {
+			aux = aux.getProximo();
+		}
+		return aux;
 	}
-	NoDuplamenteEncadeado aux = this.inicio;
-	StringBuilder s = new StringBuilder();
-	s.append("[");
-	for (int i = 0; i < this.tamanho-1; i++) {
+
+	public String toString() {
+		if(estaVazia()) {
+			return "[]";
+		}
+		NoDuplamenteEncadeado aux = this.inicio;
+		StringBuilder s = new StringBuilder();
+		s.append("[");
+		for (int i = 0; i < this.tamanho-1; i++) {
+			s.append(aux.getElemento());
+			s.append(", ");
+			aux = aux.getProximo();
+		}
 		s.append(aux.getElemento());
-		s.append(", ");
-		aux = aux.getProximo();
+		s.append("]");
+		return s.toString();
 	}
-	s.append(aux.getElemento());
-	s.append("]");
-	return s.toString();
-}
 
-public boolean estaVazia() {
-	return this.inicio == null;
-}
+	public boolean estaVazia() {
+		return this.inicio == null;
+	}
 
-public int getTamanho() {
-	return this.tamanho;
-}
+	public int getTamanho() {
+		return this.tamanho;
+	}
 
-public Object getInicio() {
-	return inicio.getElemento();
-}
+	public Object getInicio() {
+		return inicio.getElemento();
+	}
 
-public Object getUltimo() {
-	return ultimo.getElemento();
-}
+	public Object getUltimo() {
+		return ultimo.getElemento();
+	}
 }
